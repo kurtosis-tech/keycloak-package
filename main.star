@@ -217,3 +217,4 @@ def getConfigCredentialsCmdForUserInRealm(user, password, realm):
     ]
 
     return config_credentials_cmd
+    
