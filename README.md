@@ -1,73 +1,78 @@
-My Package
+Keycloak Package
 ============
-This is a [Kurtosis package](https://docs.kurtosis.com/concepts-reference/packages). It doesn't do much now, but it will soon!
+This is a [Kurtosis package][kurtosis-packages] for starting a Keycloak server with a preconfigured application. This package simplifies and automates the step described in [Keycloak getting started with the Docker version doc][keycloak-docker]
 
 Run this package
 ----------------
 If you have [Kurtosis installed][install-kurtosis], run:
 
-<!-- TODO replace YOURUSER and THISREPO with the correct values -->
 ```bash
-kurtosis run github.com/YOURUSER/THISREPO
+kurtosis run github.com/kurtosis-tech/keycloak-package
 ```
 
-<!-- TODO Add a URL-encoded version of github.com/YOURUSER/THISREPO to right after "KURTOSIS_PACKAGE_LOCATOR=" in the link below -->
-<!-- TODO You can URL-encode a string using https://www.urlencoder.org/ -->
-If you don't have Kurtosis installed, [click here to run this package on the Kurtosis playground](https://gitpod.io/#KURTOSIS_PACKAGE_LOCATOR=/https://github.com/kurtosis-tech/playground-gitpod).
+When the package finishes initializing you will see a (green) message like this:
+
+```bash
+"Now you can use the realm's user credentials [ myuser | RealmPassword321 ] to login into the application already set through this URL: https://www.keycloak.org/app/#url=http://localhost:4770&realm=myrealm&client=myclient You can also use the admin credentials [ admin | admin ] to login into the admin panel throught this URL: http://localhost:4770"
+```
+
+Click on the first link to open the Keycloak application example. Using the credentials printed in the message, log in to see how this application is integrated with the Keycloak server that was created with this package.
+
+
+If you don't have Kurtosis installed, [click here to run this package on the Kurtosis playground](https://gitpod.io/#KURTOSIS_PACKAGE_LOCATOR=https%3A%2F%2Fgithub.com%2Fkurtosis-tech%2Fkeycloak-package).
 
 To blow away the created [enclave][enclaves-reference], run `kurtosis clean -a`.
+
 
 #### Configuration
 
 <details>
     <summary>Click to see configuration</summary>
 
-You can configure this package using the JSON structure below. The default values for each parameter are shown.
+You can configure this package using the following JSON structure (though note that `//` lines aren't valid JSON, so you must remove them!). The default value each parameter will take if omitted is shown here:
 
-NOTE: the `//` lines are not valid JSON; you will need to remove them!
-
-<!-- TODO Parameterize your package as you prefer; see https://docs.kurtosis.com/next/concepts-reference/args for more -->
 ```javascript
 {
-    // The name to print
-    "name": "John Snow"
+    // The Docker image that will be run
+    "image": "quay.io/keycloak/keycloak:21.1.1",
+
+    // The name given to the service that gets added
+    "name": "keycloak-server",
+
+    // The name of the realm that will be created
+    "realm": "myrealm",
+
+    // The name of the realm's user that will be created
+    "realm-user": "myuser",
+
+    // The password given to the created realm's user
+    "realm-password": "RealmPassword321",
+
+    // The first name given to the created realm's user
+    "realm-user-first-name": "RealmUserFirstName",
+
+    // The last name given to the created realm's user
+    "realm-user-last-name": "RealmUserLastName",
+
+    // The client id used for configuring the application
+    "client-id": "myclient",
 }
 ```
 
-The arguments can then be passed in to `kurtosis run`.
-
 For example:
 
-<!-- TODO replace YOURUSER and THISREPO with the correct values -->
 ```bash
-kurtosis run github.com/YOURUSER/THISREPO '{"name":"Maynard James Keenan"}'
-```
-
-You can also store the JSON args in a file, and use command expansion to slot them in:
-
-<!-- TODO replace YOURUSER and THISREPO with the correct values -->
-```bash
-kurtosis run github.com/YOURUSER/THISREPO "$(cat args.json)"
+kurtosis run github.com/kurtosis-tech/postgres-package '{"realm": "myrealm",  "realm-user": "myuser", "realm-password": "RealmPassword321"}'
 ```
 
 </details>
 
-Use this package in your package
---------------------------------
-Kurtosis packages can be composed inside other Kurtosis packages. To use this package in your package:
+How this package can growth?
+----------------------------
+1. Ingrate this package with [Postgres package][postgres-package] using [composability][composability-in-docs]
+1. Include a configure an SSL certificate
+1. Define your own app and connec it easily with Keycloak server
 
-<!-- TODO Replace YOURUSER and THISREPO with the correct values! -->
-First, import this package by adding the following to the top of your Starlark file:
-
-```python
-this_package = import_module("github.com/YOURUSER/THISREPO/main.star")
-```
-
-Then, call the this package's `run` function somewhere in your Starlark script:
-
-```python
-this_package_output = this_package.run(plan, args)
-```
 
 Develop on this package
 -----------------------
@@ -77,5 +82,9 @@ Develop on this package
 
 
 <!-------------------------------- LINKS ------------------------------->
+[kurtosis-packages]: https://docs.kurtosis.com/concepts-reference/packages
 [install-kurtosis]: https://docs.kurtosis.com/install
 [enclaves-reference]: https://docs.kurtosis.com/concepts-reference/enclaves
+[keycloak-docker]: https://www.keycloak.org/getting-started/getting-started-docker
+[postgres-package]: https://github.com/kurtosis-tech/postgres-package
+[composability-in-docs]: https://docs.kurtosis.com/explanations/reusable-environment-definitions#what-does-a-reusable-solution-look-like 
