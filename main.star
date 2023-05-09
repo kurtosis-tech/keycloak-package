@@ -33,7 +33,6 @@ KEYCLOAK_HTTP_ROOT_PATH = "/"
 
 REALM_MASTER = "master"
 
-
 def run(plan, args):
     image = args.get(IMAGE_ARG_KEY, IMAGE_DEFAULT)
     service_name = args.get(SERVICE_NAME_ARG_KEY, SERVICE_NAME_DEFAULT)
