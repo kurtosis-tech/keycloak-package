@@ -10,13 +10,13 @@ If you have [Kurtosis installed][install-kurtosis], run:
 kurtosis run github.com/kurtosis-tech/keycloak-package
 ```
 
-When tha package finishes initializing you will see a message like this (in green color)
+When the package finishes initializing you will see a (green) message like this:
 
 ```bash
 "Now you can use the realm's user credentials [ myuser | RealmPassword321 ] to login into the application already set through this URL: https://www.keycloak.org/app/#url=http://localhost:4770&realm=myrealm&client=myclient You can also use the admin credentials [ admin | admin ] to login into the admin panel throught this URL: http://localhost:4770"
 ```
 
-You can click on the first link for opening the Keycloak application example, and then, you can login using the credentials printed in the message in order to see how this application is integraded witht he Keycloak server that you already started with this package.
+Click on the first link to open the Keycloak application example. Using the credentials printed in the message, log in to see how this application is integrated with the Keycloak server that was created with this package.
 
 
 If you don't have Kurtosis installed, [click here to run this package on the Kurtosis playground](https://gitpod.io/#KURTOSIS_PACKAGE_LOCATOR=https%3A%2F%2Fgithub.com%2Fkurtosis-tech%2Fkeycloak-package).

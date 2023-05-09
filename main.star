@@ -29,6 +29,7 @@ KEYCLOAK_CLI_NAME = "kcadm.sh"
 KEYCLOAK_CLI_FILEPATH = KEYCLOAK_BIN_DIRPATH + KEYCLOAK_CLI_NAME
 KEYCLOAK_APP_URL_WITH_PARAMS = "https://www.keycloak.org/app/#url=http://localhost:{}&realm={}&client={}"
 KEYCLOAK_ADMIN_PANEL_URL = "http://localhost:{}"
+KEYCLOAK_HTTP_ROOT_PATH = "/"
 
 REALM_MASTER = "master"
 
@@ -66,6 +67,16 @@ def run(plan, args):
 
     plan.print("Starting " + service_name + "...")
 
+    keycloak_rc = ReadyCondition(
+        recipe = GetHttpRequestRecipe(
+            port_id = PORT_NAME,
+            endpoint = KEYCLOAK_HTTP_ROOT_PATH
+        ),
+        field = "code",
+        assertion= "==",
+        target_value= 200
+    )
+
     keycloak_service = plan.add_service(
         name = service_name,
         config = ServiceConfig(
@@ -74,6 +85,7 @@ def run(plan, args):
             public_ports = public_ports_config,
             env_vars = env_vars_config,
             cmd = CMD,
+            ready_conditions = keycloak_rc
         )
     )
 
