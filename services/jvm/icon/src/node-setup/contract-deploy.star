@@ -4,8 +4,6 @@ SERVICE_NAME_DEFAULT = "my-service-name"
 CONTRACT_NAME_ARG_KEY = "contract"
 CONTRACT_NAME_DEFAULT = "my-contract"
 
-contract_name,init_message
-
 def first_method(plan, args):
 
     service_name = args.get(SERVICE_NAME_ARG_KEY, SERVICE_NAME_DEFAULT)
