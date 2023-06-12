@@ -27,3 +27,17 @@ def theird_method(plan, first_arg, second_arg):
     plan.print("Second argument received: {}".format(second_arg))
 
     return "response from the theird method which received these arguments: {}, {}".format(first_arg, second_arg)
+
+def fourth_method(plan, first_arg, second_arg, args):
+
+    plan.print("First argument received: {}".format(first_arg))
+
+    plan.print("Second argument received: {}".format(second_arg))
+
+    service_name = args.get(SERVICE_NAME_ARG_KEY, SERVICE_NAME_DEFAULT)
+
+    contract_name = args.get(CONTRACT_NAME_ARG_KEY, CONTRACT_NAME_DEFAULT)
+
+    plan.print("Received service name: {} and contract name: {}".format(service_name, contract_name))
+
+    return "response from the fourth method which received these arguments: {}, {}, {}".format(first_arg, second_arg, args)
