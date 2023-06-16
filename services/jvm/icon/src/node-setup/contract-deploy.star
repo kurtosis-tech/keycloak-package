@@ -41,3 +41,11 @@ def fourth_method(plan, first_arg, second_arg, args):
     plan.print("Received service name: {} and contract name: {}".format(service_name, contract_name))
 
     return "response from the fourth method which received these arguments: {}, {}, {}".format(first_arg, second_arg, args)
+
+def last_method(first_arg, second_arg):
+
+    plan.print("First argument received: {}".format(first_arg))
+
+    plan.print("Second argument received: {}".format(second_arg))
+
+    return "response from the last method which received these arguments: {}, {}".format(first_arg, second_arg)
