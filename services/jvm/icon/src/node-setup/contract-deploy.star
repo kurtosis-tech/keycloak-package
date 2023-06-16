@@ -4,11 +4,9 @@ SERVICE_NAME_DEFAULT = "my-service-name"
 CONTRACT_NAME_ARG_KEY = "contract"
 CONTRACT_NAME_DEFAULT = "my-contract"
 
-def run(plan):
+def run():
 
-    plan.print("Executing the run method without any argument")
-
-    return 
+    return "Executed the run method without any argument"
 
 def first_method(plan, args):
 
@@ -49,9 +47,5 @@ def fourth_method(plan, first_arg, second_arg, args):
     return "response from the fourth method which received these arguments: {}, {}, {}".format(first_arg, second_arg, args)
 
 def last_method(first_arg, second_arg):
-
-    plan.print("First argument received: {}".format(first_arg))
-
-    plan.print("Second argument received: {}".format(second_arg))
 
     return "response from the last method which received these arguments: {}, {}".format(first_arg, second_arg)
