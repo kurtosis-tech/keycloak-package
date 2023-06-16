@@ -4,6 +4,12 @@ SERVICE_NAME_DEFAULT = "my-service-name"
 CONTRACT_NAME_ARG_KEY = "contract"
 CONTRACT_NAME_DEFAULT = "my-contract"
 
+def run(plan):
+
+    plan.print("Executing the run method without any argument")
+
+    return 
+
 def first_method(plan, args):
 
     service_name = args.get(SERVICE_NAME_ARG_KEY, SERVICE_NAME_DEFAULT)
