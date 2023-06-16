@@ -8,15 +8,9 @@ def run():
 
     return "Executed the run method without any argument"
 
-def first_method(plan, args):
+def first_method():
 
-    service_name = args.get(SERVICE_NAME_ARG_KEY, SERVICE_NAME_DEFAULT)
-
-    contract_name = args.get(CONTRACT_NAME_ARG_KEY, CONTRACT_NAME_DEFAULT)
-
-    plan.print("Received service name: {} and contract name: {}".format(service_name, contract_name))
-
-    return "response from the first method which received service name: {} and contract {}".format(service_name, contract_name)
+    return "response from the first method"
 
 def second_method(plan, first_arg):
 
